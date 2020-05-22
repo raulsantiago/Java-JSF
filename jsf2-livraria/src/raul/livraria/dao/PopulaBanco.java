@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 
 import raul.livraria.modelo.Autor;
 import raul.livraria.modelo.Livro;
+import raul.livraria.modelo.Usuario;
 
 public class PopulaBanco {
 
@@ -58,6 +59,10 @@ public class PopulaBanco {
 
 		em.persist(capitaes);
 		em.persist(flor);
+		
+		Usuario ra = geraUsuario("123456", "raul@g.com");
+		
+		em.persist(ra);
 
 		em.getTransaction().commit();
 		em.close();
@@ -79,6 +84,13 @@ public class PopulaBanco {
 		livro.setPreco(preco);
 		livro.adicionaAutor(autor);
 		return livro;
+	}
+	
+	private static Usuario geraUsuario(String senha, String email) {
+		Usuario usuario = new Usuario();
+		usuario.setEmail(email);
+		usuario.setSenha(senha);
+		return usuario;
 	}
 
 	@SuppressWarnings("unused")

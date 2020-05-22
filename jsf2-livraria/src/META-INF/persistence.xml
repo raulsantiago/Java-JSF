@@ -4,10 +4,11 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0">
 
-	<persistence-unit name="livraria" transaction-type="RESOURCE_LOCAL">
+	<persistence-unit name="jsf2-livraria" transaction-type="RESOURCE_LOCAL">
 
    		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		
+		<class>raul.livraria.modelo.Usuario</class>
 		<class>raul.livraria.modelo.Livro</class>
 		<class>raul.livraria.modelo.Autor</class>
 
