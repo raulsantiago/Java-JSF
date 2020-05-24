@@ -8,86 +8,86 @@
 	  
 <ui:composition template="_template.xhtml">
 	
-		<f:metadata>
-			<f:viewParam name="autorId" value="#{autorBean.autorId}" />
-			<f:viewAction action="#{autorBean.carregarAutorId()}" if="#{param.autorId != null}" />
-		</f:metadata>
+	<f:metadata>
+		<f:viewParam name="autorId" value="#{autorBean.autorId}" />
+		<f:viewAction action="#{autorBean.carregarAutorId()}" if="#{param.autorId != null}" />
+	</f:metadata>
 
-		<ui:define name="titulo">
-			<p:outputPanel>Novo Autor</p:outputPanel>
-		</ui:define>
+	<ui:define name="titulo">
+		<p:outputPanel>Novo Autor</p:outputPanel>
+	</ui:define>
 
-		<ui:define name="conteudo">
-			<h:form id="autor">
-				<p:fieldset legend="Dados do Autor">
-					<h:panelGrid columns="3">
-						
-						<p:outputLabel value="Nome:" for="nome" />
-						<p:inputText id="nome" value="#{autorBean.autor.nome}"
-							required="true">
-							<f:validateLength minimum="5" />
-							<f:ajax event="blur" render="messageNome" />
-						</p:inputText>
-						<p:message for="nome" id="messageNome" />
-						
-						<p:outputLabel value="Email:" for="email" />
-						<p:inputText id="email" value="#{autorBean.autor.email}" required="true" validatorMessage="Email inválido">
-							<f:attribute name="type" value="email" />
-							<f:passThroughAttribute name="placeholder" value="Email do autor" />
-							<f:validateRegex pattern=".+@.+" />
-							<f:ajax event="blur" render="messageEmail" />
-						</p:inputText> 
-						<p:message for="email" id="messageEmail" />
-						
-						<p:commandButton value="Gravar" action="#{autorBean.gravar}" process="@form" update="@form :formTabelaAutors" />
-						
-						<!-- 
-						<p:outputLabel value="Nome:" for="nome" />
-						<p:inputText id="nome" value="#{autorBean.autor.nome}" required="true" >
-							<f:validateLength minimum="5" />
-							<f:ajax event="blur" render="messageNome"/>
-						</p:inputText>
-						<p:message for="nome" id="messageNome"/>
-						
-						<p:outputLabel value="Email:" for="email" />
-						<p:inputText id="email" value="#{autorBean.autor.email}" required="true" validatorMessage="Email inválido" >
-							<f:attribute name="type" value="email"/>						
-							<f:passThroughAttribute name="placeholder" value="Email do autor"/>
-							<f:validateRegex pattern=".+@.+"/>
-							<f:ajax event="blur" render="messageEmail"/>
-						</p:inputText>
-						<p:message for="email" id="messageEmail"/>					
-						
-						<p:commandButton value="Gravar" action="#{autorBean.gravar}" process="@form" update="@form :formTabelaAutors"/>
-					 	-->
+	<ui:define name="conteudo">
+		<h:form id="autor">
+			<p:fieldset legend="Dados do Autor">
+				<h:panelGrid columns="3">
+					
+					<p:outputLabel value="Nome:" for="nome" />
+					<p:inputText id="nome" value="#{autorBean.autor.nome}"
+						required="true">
+						<f:validateLength minimum="5" />
+						<f:ajax event="blur" render="messageNome" />
+					</p:inputText>
+					<p:message for="nome" id="messageNome" />
+					
+					<p:outputLabel value="Email:" for="email" />
+					<p:inputText id="email" value="#{autorBean.autor.email}" required="true" validatorMessage="Email inválido">
+						<f:attribute name="type" value="email" />
+						<f:passThroughAttribute name="placeholder" value="Email do autor" />
+						<f:validateRegex pattern=".+@.+" />
+						<f:ajax event="blur" render="messageEmail" />
+					</p:inputText> 
+					<p:message for="email" id="messageEmail" />
+					
+					<p:commandButton value="Gravar" action="#{autorBean.gravar}" process="@form" update="@form :formTabelaAutors" />
+					
+					<!-- 
+					<p:outputLabel value="Nome:" for="nome" />
+					<p:inputText id="nome" value="#{autorBean.autor.nome}" required="true" >
+						<f:validateLength minimum="5" />
+						<f:ajax event="blur" render="messageNome"/>
+					</p:inputText>
+					<p:message for="nome" id="messageNome"/>
+					
+					<p:outputLabel value="Email:" for="email" />
+					<p:inputText id="email" value="#{autorBean.autor.email}" required="true" validatorMessage="Email inválido" >
+						<f:attribute name="type" value="email"/>						
+						<f:passThroughAttribute name="placeholder" value="Email do autor"/>
+						<f:validateRegex pattern=".+@.+"/>
+						<f:ajax event="blur" render="messageEmail"/>
+					</p:inputText>
+					<p:message for="email" id="messageEmail"/>					
+					
+					<p:commandButton value="Gravar" action="#{autorBean.gravar}" process="@form" update="@form :formTabelaAutors"/>
+				 	-->
 				</h:panelGrid>
 			</p:fieldset>
 		</h:form>
-		<!-- 
-			<p:dataList value="#{autorBean.autores}" var="autor" type="definition">
-		        <f:facet name="header">
-		            Autores
-		        </f:facet>
-		        
-		         <p:commandButton icon="fa fa-fw fa-edit" update=":autor" >
-						<f:setPropertyActionListener value="#{autor.id}" target="#{autorBean.autor}" />
-				</p:commandButton>
-		        
-		         
-		        <p:commandButton icon="fa fa-fw fa-remove" action="#{autorBean.remover(autor)}" update="@form"/>
-		        
-		        #{autor.nome} - #{autor.email}
-		        
-	    	</p:dataList>
-	   	-->	
+	    <!-- 
+		<p:dataList value="#{autorBean.autores}" var="autor" type="definition">
+	        <f:facet name="header">
+	            Autores
+	        </f:facet>
+	        
+	         <p:commandButton icon="fa fa-fw fa-edit" update=":autor" >
+					<f:setPropertyActionListener value="#{autor.id}" target="#{autorBean.autor}" />
+			</p:commandButton>
+	        
+	         
+	        <p:commandButton icon="fa fa-fw fa-remove" action="#{autorBean.remover(autor)}" update="@form"/>
+	        
+	        #{autor.nome} - #{autor.email}
+	        
+    	</p:dataList>
+   	    -->	
 	    <h:form id="formTabelaAutors"> 
        		<h:dataTable value="#{autorBean.autores}" var="autor" id="tabelaAutores" >
        			<h:column>
        				<f:facet name="header">Nome</f:facet>
        				<h:outputText value="#{autor.nome}" />
        			</h:column>
-       			 <h:column>
-       			 	<f:facet name="header">Alterar</f:facet>
+       			<h:column>
+       				<f:facet name="header">Alterar</f:facet>
        				<h:commandLink action="#{autorBean.alterar(autor)}" value="alterar" />        				
    				</h:column>
    			    <h:column>

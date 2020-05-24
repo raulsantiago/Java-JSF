@@ -1,31 +1,39 @@
-package raul.livraria.dao;
+package br.com.caelum.livraria.dao;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
 import javax.persistence.EntityManager;
 
-import raul.livraria.modelo.Autor;
-import raul.livraria.modelo.Livro;
-import raul.livraria.modelo.Usuario;
+import br.com.caelum.livraria.modelo.Autor;
+import br.com.caelum.livraria.modelo.Livro;
+import br.com.caelum.livraria.modelo.Usuario;
 
-public class PopulaBanco {
 
+@SuppressWarnings("serial")
+public class PopulaBanco implements Serializable {
+	
+	
 	public static void main(String[] args) {
 
 		EntityManager em = new JPAUtil().getEntityManager();
 
 		em.getTransaction().begin();
 
-		Autor assis = geraAutor("Machado de Assis");
+		Autor assis = geraAutor("Machado de Assis", "machado@gmail.com");
 		em.persist(assis);
 
-		Autor amado = geraAutor("Jorge Amado");
+		Autor amado = geraAutor("Jorge Amado", "jorge@gmail.com");
 		em.persist(amado);
 
-		Autor coelho = geraAutor("Paulo Coelho");
+		Autor coelho = geraAutor("Paulo Coelho", "pauloc@gmail.com");
 		em.persist(coelho);
+
+		Autor lobato = geraAutor("Monteiro Lobato", "monteirol@gmail.com");
+		em.persist(lobato);
 
 		Livro casmurro = geraLivro("978-8-52-504464-8", "Dom Casmurro",
 				"10/01/1899", 24.90, assis);
@@ -60,8 +68,8 @@ public class PopulaBanco {
 		em.persist(capitaes);
 		em.persist(flor);
 		
-		Usuario ra = geraUsuario("123456", "raul@g.com");
-		Usuario re = geraUsuario("123456", "re@g.com");
+		Usuario ra = geraUsuario("123456", "raul@gmail.com");
+		Usuario re = geraUsuario("123456", "reul@gmail.com");
 		
 		em.persist(ra);
 		em.persist(re);
@@ -71,9 +79,10 @@ public class PopulaBanco {
 
 	}
 
-	private static Autor geraAutor(String nome) {
+	private static Autor geraAutor(String nome, String email) {
 		Autor autor = new Autor();
 		autor.setNome(nome);
+		autor.setEmail(email);
 		return autor;
 	}
 
@@ -95,7 +104,6 @@ public class PopulaBanco {
 		return usuario;
 	}
 
-	@SuppressWarnings("unused")
 	private static Calendar parseData(String data) {
 		try {
 			Date date = new SimpleDateFormat("dd/MM/yyyy").parse(data);
@@ -108,4 +116,3 @@ public class PopulaBanco {
 	}
 
 }
-
